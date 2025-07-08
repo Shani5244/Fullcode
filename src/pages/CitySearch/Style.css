@@ -1,0 +1,88 @@
+.search-group {
+  display: flex;
+  align-items: stretch;
+  gap: 10px; /* Space between city and service search */
+}
+
+/* City search container */
+.city-search-container {
+  position: relative;
+  width: 200px;
+}
+
+/* Input styling for city search */
+.city-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Suggestion dropdown for city */
+.city-suggestion-list {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Each city suggestion item */
+.city-suggestion-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.city-suggestion-list li:hover {
+  background-color: #f2f2f2;
+}
+
+/* ------------------------------------- */
+/* Service search container */
+.service-search-container {
+  position: relative;
+  width: 300px;
+}
+
+/* Input styling for service search */
+.service-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Suggestion dropdown for service */
+.service-suggestion-list {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Each service suggestion item */
+.service-suggestion-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.service-suggestion-list li:hover {
+  background-color: #f2f2f2;
+}

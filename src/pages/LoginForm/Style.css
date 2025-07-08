@@ -1,0 +1,121 @@
+/* LoginForm/Style.css */
+
+/* General Reset & Background Image */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* background: url('../../Asstes/Services/background.png') no-repeat center center fixed; */
+  background-size: cover;
+}
+
+/* Wrapper to center the form */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login Form */
+form {
+  background-color: transparent;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  /* box-shadow: #fd0202
+  ;  */
+}
+
+/* Heading */
+form h1 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #101010;
+}
+
+/* Input Box Wrapper */
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Input Field */
+.input-box input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #080808;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Icon inside input */
+.input-box .icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+  text-align: left;
+}
+
+/* Remember Me & Forgot Password */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Forgot Password Button */
+.forgot-btn {
+  background: none;
+  border: none;
+  color: #070707;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #0e0e0f;
+  color: rgb(13, 13, 13);
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0c0c0c;
+}
+
+/* Register Link */
+.register-link {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: #fd0202;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,24 @@
+.rating-row.selected {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.rating-row:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.bar-container {
+  background-color: #e0e0e0;
+  height: 8px;
+  width: 100%;
+  border-radius: 4px;
+  margin: 0 8px;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #ffb400;
+  border-radius: 4px;
+}

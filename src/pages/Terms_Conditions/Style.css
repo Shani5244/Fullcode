@@ -1,0 +1,26 @@
+.static-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.static-page h1 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 24px;
+}
+
+.static-page ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.static-page p {
+  margin-top: 16px;
+  line-height: 1.6;
+}

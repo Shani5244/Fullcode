@@ -1,0 +1,56 @@
+.request-manager {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.request-list {
+  margin-top: 20px;
+}
+
+.request-card {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #aaa;
+}
+
+.request-card.accepted {
+  border-left-color: #28a745;
+  background-color: #e8f7ea;
+}
+
+.request-card.rejected {
+  border-left-color: #dc3545;
+  background-color: #fde8e8;
+}
+
+.request-card h4 {
+  margin: 0;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions button {
+  padding: 6px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.actions button:last-child {
+  background-color: #dc3545;
+  color: white;
+}

@@ -1,0 +1,68 @@
+/* Make icons and search bar transparent with black color */
+
+/* Search bar */
+.input-group .form-control {
+  background-color: transparent;
+  border-left: none;
+  color: #000; /* black text */
+  border-radius: 0 0.375rem 0.375rem 0;
+  box-shadow: none;
+}
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.input-group-text {
+  border-right: none;
+  background-color: transparent;
+  color: #000; /* black icon */
+}
+
+/* Optional focus effect for better visibility */
+.input-group:focus-within {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+/* Icons */
+.navbar-icons .btn-link,
+.navbar-icons .text-dark,
+.user-icon,
+.search-icon {
+  color: #000; /* solid black */
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.95s ease;
+  /* left: 100px; */
+}
+
+.navbar-icons .btn-link:hover,
+.navbar-icons .text-dark:hover,
+.search-icon:hover,
+.user-icon:hover {
+  transform: scale(1.1);
+  color: #333; /* slightly darker black on hover */
+}
+.nav-icon {
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #0a0a0a;
+  transition: color 0.3s ease;
+}
+
+.nav-icon:hover {
+  color: #070707;
+}
+
+.search-wrapper {
+  background: transparent;
+  border-radius: 5px;
+  padding: 5px 0px;
+  display: flex;
+  align-items: center;
+}

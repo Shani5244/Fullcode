@@ -1,0 +1,149 @@
+/* Container for the entire form */
+.location-form-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Form title */
+.location-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.location-form-container input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Suggestions dropdown */
+.city-search {
+  position: relative;
+}
+
+.suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+  position: absolute;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  z-index: 10;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background: #eaeaea;
+}
+
+/* Location type radio group */
+.location-type {
+  margin: 15px 0;
+}
+
+.location-type label {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+/* Submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Profile view section */
+.location-profile {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.location-profile h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.location-profile p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Edit and Delete buttons */
+.edit-button,
+.delete-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #b02a37;
+}
+
+/* Error messages */
+.error {
+  color: #d93025;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* Hiding helper class */
+.hidden {
+  display: none !important;
+}

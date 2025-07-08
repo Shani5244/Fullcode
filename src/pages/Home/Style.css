@@ -1,0 +1,138 @@
+/* Navbar base */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background-color: transparent;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo-text {
+  font-size: 2.9rem;
+  font-weight: 1000;
+  /* color: #ec0b0b; */
+  text-decoration: none;
+}
+
+/* Navigation Links */
+.navbar-nav {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.navbar-nav .nav-link {
+  color: #0c0c0c;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #050505;
+}
+
+/* Search input */
+.input-group-text,
+.form-control {
+  color: #555454;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #050505;
+}
+
+/* Icon section */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #0c0c0c;
+}
+
+/* .nav-icon:hover {
+  color: #1abc9c;
+} */
+
+/* Notification red dot */
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+/* Notification bell button */
+.notification-button {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  position: relative;
+}
+
+/* Notification dropdown */
+.notification-dropdown {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  min-width: 220px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  z-index: 1000;
+}
+
+/* Notification message items */
+.notification-item {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: none;
+  color: #000;
+}
+
+.notification-item.unread {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.notification-item:hover {
+  background: none !important;
+}
+
+/* Dropdown general styling (More, Settings) */
+.dropdown-menu.show {
+  background-color:black;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #fdfbfb;
+  background: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #fbf4f4;
+}
+   
+  

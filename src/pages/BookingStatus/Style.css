@@ -1,0 +1,169 @@
+/* Style.css */
+
+/* Booking Status Container */
+.booking-status-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Headings */
+.booking-status-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Clear All Bookings Button */
+.clear-button-container {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.clear-bookings-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-bookings-btn:hover {
+  background-color: #c82333;
+}
+
+/* Booking List */
+.booking-list {
+  list-style: none;
+  padding: 0;
+}
+
+.booking-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.booking-item h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+/* Status Labels */
+.status-confirmed {
+  color: green;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+/* Provider Details */
+.provider-details {
+  margin-top: 12px;
+  background: #eef;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.provider-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+/* Rate Service Section */
+.rate-service {
+  margin-top: 10px;
+}
+
+/* Interactive Star Rating */
+.interactive-stars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+    align-items: flex-start;
+}
+
+.star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.selected {
+  color: #ffc107;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #ffa000;
+}
+
+/* Rating Snapshot */
+.rating-snapshot-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff3cd;
+}
+
+.snapshot-box h4 {
+  margin-bottom: 6px;
+  font-size: 18px;
+  color: #333;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.rating-row span {
+  width: 32px;
+}
+
+.bar-container {
+  flex: 1;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 0 8px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #ffc107;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.count {
+  width: 40px;
+  text-align: right;
+}

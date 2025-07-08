@@ -1,0 +1,154 @@
+/* Main footer container */
+.uc-footer {
+  background-color: #f9f9f9;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  border-top: 1px solid #ddd;
+  margin-top: auto;
+}
+
+/* Top section of footer */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Logo section */
+.footer-logo {
+  min-width: 200px;
+}
+
+.footer-logo h2 {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.footer-logo p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Footer columns layout */
+.footer-columns {
+  display: flex;
+  flex: 3;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.footer-col {
+  min-width: 160px;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #070707;
+  text-decoration: underline;
+}
+
+/* Social media icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.social-icons svg {
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icons svg:hover {
+  color: #007bff;
+}
+
+/* App store icons */
+.app-links img {
+  width: 120px;
+  margin: 6px 10px 0 0;
+  display: inline-block;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Scroll-to-top link */
+.scroll-to-top {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+
+  .app-links img {
+    width: 100px;
+  }
+
+  .footer-logo h2 {
+    font-size: 28px;
+  }
+}

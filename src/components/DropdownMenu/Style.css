@@ -1,0 +1,35 @@
+.custom-dropdown {
+  background-color: rgb(239, 4, 4);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  right: 0;
+  top: 40px;
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.logout-btn {
+  color: #dc3545;
+}
