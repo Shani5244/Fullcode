@@ -1,6 +1,11 @@
 import React from "react";
 import {
-  BrowserRouter as Router,Routes,Route,Navigate,useLocation,} from "react-router-dom";
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 // Pages
 import About from "./pages/About/index";
 import Home from "./pages/Home/index";
@@ -31,14 +36,18 @@ import BookingConfirmation from "./pages/BookingConfirmation";
 import SearchHistory from "./pages/SearchHistory";
 import BookingPage from "./pages/BookingPage";
 import BookingStatus from "./pages/BookingStatus";
-import SearchResults from './pages/SearchResults';
+import SearchResults from "./pages/SearchResults";
+
+import ProviderRegister from "./ServicesProvider/RegisterForm";
+import ProviderLogin from "./ServicesProvider/LoginForm";
+import ProviderDashboard from "./ServicesProvider/ProviderDashboard";
 // import SearchHistoryPage from './pages/SearchHistory';
 // import CitySearch from "./pages/CitySearch";
 // import LocationForm from './pages/LocationForm';
-import LocationPage from './pages/LocationPage';
+import LocationPage from "./pages/LocationPage";
 
 // Components
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/index";
 import Profile from "./components/Profile/index";
 
@@ -62,7 +71,7 @@ function AppWrapper() {
           path="/profile"
           element={isLoggedIn ? <Profile /> : <Navigate to="/login" />}
         />
-        
+
         <Route path="/BookingConfirmation" element={<BookingConfirmation />} />
         <Route path="/SearchHistory" element={<SearchHistory />} />
         <Route path="/AdminPanel" element={<AdminPanel />} />
@@ -92,10 +101,13 @@ function AppWrapper() {
         <Route path="/Services/edit/:id" element={<EditService />} />
         <Route path="/Sooking" element={<BookingPage />} />
         <Route path="/BookingStatus" element={<BookingStatus />} />
-        {/* <Route path="/SearchHistory" element={<SearchHistory/>} */}
         <Route path="/Location" element={<LocationPage />} />
-        {/* <Route path="/services/:city" element={<CityServices />} /> */}
 
+        <Route path="/provider-register" element={<ProviderRegister />} />
+        <Route path="/provider-login" element={<ProviderLogin />} />
+        <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+        {/* <Route path="/SearchHistory" element={<SearchHistory/>} */}
+        {/* <Route path="/services/:city" element={<CityServices />} /> */}
 
         {/* Fallback Route */}
         <Route path="*" element={<Navigate to="/home" />} />
@@ -108,7 +120,7 @@ function App() {
   return (
     <Router>
       {/* <CitySearch /> */}
-            {/* <LocationForm /> */}
+      {/* <LocationForm /> */}
       {/* <SearchBar /> */}
       <LiveChat />
       <AppWrapper />
