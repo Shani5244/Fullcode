@@ -47,7 +47,7 @@ const ProviderLogin = () => {
         Don't have an account?{' '}
         <span
           onClick={() => navigate('/provider-register')}
-          style={{ color: 'blue', cursor: 'pointer' }}
+          // style={{ color: 'blue', cursor: 'pointer' }}
         >
           Register here
         </span>
