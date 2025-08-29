@@ -1,20 +1,20 @@
-// src/pages/ProviderDashboard.jsx
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ProviderLoggedIn from '../../utils/ProviderLoggedIn';
-import './Style.css';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import ProviderSidebar from '../../ServicesProvider/ProviderSidebar';
+import Completed from '../../ServicesProvider/Completed';
+import Earnings from '../../ServicesProvider/Earnings';
+import UpdateProfile from '../../ServicesProvider/UpdateProfile';
+// import './ProviderStyle.css'; // Optional
 
 const ProviderDashboard = () => {
   const navigate = useNavigate();
   const [completedBookings, setCompletedBookings] = useState([]);
-  const [averageRating, setAverageRating] = useState(0);
   const [provider, setProvider] = useState(null);
 
   useEffect(() => {
     const loggedInProvider = JSON.parse(localStorage.getItem('loggedInProvider'));
-
-    if (!ProviderLoggedIn() || !loggedInProvider) {
-      alert("Please login as provider.");
+    if (!loggedInProvider) {
+      alert('Access denied. Please log in as provider.');
       navigate('/provider-login');
       return;
     }
@@ -22,20 +22,10 @@ const ProviderDashboard = () => {
     setProvider(loggedInProvider);
 
     const bookings = JSON.parse(localStorage.getItem('bookingHistory')) || [];
-
     const providerBookings = bookings.filter(
       b => b.providerEmail === loggedInProvider.email && b.status === 'completed'
     );
-
     setCompletedBookings(providerBookings);
-
-    // Calculate average rating
-    const ratings = providerBookings.map(b => Number(b.rating)).filter(Boolean);
-    const avg = ratings.length
-      ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
-      : 0;
-
-    setAverageRating(avg);
   }, [navigate]);
 
   const handleLogout = () => {
@@ -43,35 +33,36 @@ const ProviderDashboard = () => {
     navigate('/provider-login');
   };
 
-  const earningPerBooking = 500;
-  const totalEarnings = completedBookings.length * earningPerBooking;
-
   if (!provider) return null;
 
   return (
-    <div className="dashboard-container">
-      <h2>Welcome, {provider.name}</h2>
-      <p><strong>Service:</strong> {provider.service}</p>
-      <p><strong>Email:</strong> {provider.email}</p>
+    <div className="provider-dashboard">
+      <ProviderSidebar />
+      <div className="provider-dashboard-content">
+        <h2>Welcome, {provider.name}</h2>
+        <p><strong>Service:</strong> {provider.service}</p>
+        <p><strong>Email:</strong> {provider.email}</p>
+        <hr />
 
-      <hr />
+        <ul className="review-list">
+          {completedBookings.map((b, i) => (
+            <li key={i}>
+              <strong>{b.serviceName || b.name}</strong>: "{b.review || 'No review'}" – ⭐ {b.rating || 'N/A'}
+            </li>
+          ))}
+        </ul>
 
-      <div className="dashboard-metrics">
-        <h3>📦 Completed Bookings: {completedBookings.length}</h3>
-        <h3>💰 Total Earnings: ₹{totalEarnings}</h3>
-        <h3>⭐ Average Rating: {averageRating}</h3>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+
+        <hr />
+
+        {/* Sidebar Sub Routes */}
+        <Routes>
+          <Route path="completed" element={<Completed />} />
+          <Route path="earnings" element={<Earnings />} />
+          <Route path="update-profile" element={<UpdateProfile />} />
+        </Routes>
       </div>
-
-      <h3>📝 Reviews:</h3>
-      <ul className="review-list">
-        {completedBookings.map((b, i) => (
-          <li key={i}>
-            <strong>{b.serviceName}</strong>: "{b.review || 'No review'}" – ⭐ {b.rating || 'N/A'}
-          </li>
-        ))}
-      </ul>
-
-      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

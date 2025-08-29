@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../pages/Terms_Conditions/Style.css';
+import '../Terms_Conditions/Style.css';
 
 const Privacy = () => {
   return (

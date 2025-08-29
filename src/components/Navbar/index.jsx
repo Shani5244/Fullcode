@@ -1,4 +1,3 @@
-// src/components/Navbar/Navbar.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../components/Navbar/Style.css';
@@ -18,6 +17,8 @@ function Navbar() {
   const moreRef = useRef(null);
   const settingsRef = useRef(null);
   const notificationRef = useRef(null);
+
+  const provider = JSON.parse(localStorage.getItem("loggedInProvider"));
 
   // Mock notification setup
   useEffect(() => {
@@ -47,6 +48,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('loggedInProvider');
     alert('You have logged out');
     navigate('/login');
   };
@@ -80,7 +82,6 @@ function Navbar() {
                   <li><Link className="dropdown-item" to="/contact" onClick={() => setShowMore(false)}>Contact</Link></li>
                   <li><Link className="dropdown-item" to="/menu" onClick={() => setShowMore(false)}>Menu</Link></li>
                   <li><Link className="dropdown-item" to="/profile" onClick={() => setShowMore(false)}>Profile</Link></li>
-                  {/* <li><Link className="dropdown-item" to="/BookingStatus" onClick={() => setShowMore(false)}>Booking Status</Link></li> */}
                 </ul>
               )}
             </li>
@@ -133,6 +134,14 @@ function Navbar() {
                   <Link className="dropdown-item" to="/menu" onClick={() => setShowSettings(false)}>Menu</Link>
                   <Link className="dropdown-item" to="/BookingStatus" onClick={() => setShowSettings(false)}>Booking Status</Link>
                   <Link className="dropdown-item" to="/SearchHistory" onClick={() => setShowSettings(false)}>Search History</Link>
+
+                  {/* 📥 Provider Requests only shown when provider is logged in */}
+                  {provider && (
+                    <Link className="dropdown-item fw-bold text-primary" to="/provider/requests" onClick={() => setShowSettings(false)}>
+                      📥 Provider Requests
+                    </Link>
+                  )}
+
                   <button className="dropdown-item text-danger" onClick={handleLogout}>Logout</button>
                 </div>
               )}

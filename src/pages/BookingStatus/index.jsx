@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ServiceProvider from '../../components/ServiceProvider';
-import ServiceRatingSnapshot from '../../components/ServiceRatingSnapshot';
-import { saveRating } from '../../Datas/RatingsData';
-import RatingSnapshot from '../../pages/RatingSnapshot';
 import InteractiveStarRating from '../../components/InteractiveStarRating';
 import './Style.css';
 
@@ -20,21 +17,12 @@ const BookingStatus = () => {
   }, []);
 
   const loadBookings = () => {
-    const stored = localStorage.getItem('bookingHistory');
-    if (!stored) {
-      setBookings([]);
-      return;
-    }
-
     try {
-      const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed)) {
-        setBookings(parsed);
-      } else {
-        setBookings([]);
-      }
+      const stored = localStorage.getItem('bookingHistory');
+      const parsed = JSON.parse(stored) || [];
+      setBookings(Array.isArray(parsed) ? parsed : []);
     } catch (err) {
-      console.error("❌ Failed to parse bookingHistory:", err);
+      console.error('❌ Error loading bookings:', err);
       setBookings([]);
     }
   };
@@ -49,12 +37,23 @@ const BookingStatus = () => {
   const handleRateService = (index, value) => {
     const ratedBooking = bookings[index];
     if (ratedBooking && ratedBooking.name) {
-      saveRating(ratedBooking.name, value);
       setFeedbacks((prev) => ({ ...prev, [index]: true }));
       setPopupMessage(`Thank you for rating "${ratedBooking.name}" ${value} stars!`);
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 2000);
+           setTimeout(() => setShowPopup(false), 2000);
     }
+  };
+
+  // ✅ FIXED LOCATION FORMATTER
+  const renderLocation = (location) => {
+    if (!location) return 'Address not provided';
+
+    // If location is a string (fallback)
+    if (typeof location === 'string') return location;
+
+    const { house, landmark, city, state, pincode } = location;
+    const parts = [house, landmark, city, state, pincode].filter(Boolean);
+    return parts.length > 0 ? parts.join(', ') : 'Address not provided';
   };
 
   return (
@@ -66,8 +65,6 @@ const BookingStatus = () => {
           <div className="popup-message">{popupMessage}</div>
         </div>
       )}
-
-      <RatingSnapshot ratings={{ 5: 213, 4: 40, 3: 31, 2: 15, 1: 19 }} />
 
       {bookings.length === 0 ? (
         <p className="no-bookings">No bookings found.</p>
@@ -87,11 +84,7 @@ const BookingStatus = () => {
                 <p><strong>Price:</strong> ₹{booking?.price}</p>
                 <p><strong>Date:</strong> {booking?.date}</p>
 
-                <p><strong>Location:</strong>{' '}
-                  {booking?.location && booking.location.house && booking.location.city
-                    ? `${booking.location.house}, ${booking.location.landmark || ''}, ${booking.location.city}`
-                    : 'N/A'}
-                </p>
+                <p><strong>Location:</strong> {renderLocation(booking.location)}</p>
 
                 <p><strong>Payment Method:</strong> {booking?.method || 'Not selected'}</p>
                 <p><strong>Status:</strong>{' '}
@@ -114,21 +107,18 @@ const BookingStatus = () => {
                 </button>
 
                 {booking.provider ? (
-                  <div className="provider-details">
-                    <h4>👤 Assigned Provider</h4>
-                    <img src={booking.provider.image} alt={booking.provider.name} className="provider-photo" />
-                    <p><strong>Name:</strong> {booking.provider.name}</p>
-                    <p><strong>Phone:</strong> {booking.provider.phone}</p>
-                    <p><strong>Email:</strong> {booking.provider.email}</p>
-                  </div>
+                  <>
+                    <div className="provider-details">
+                      <h4>👤 Assigned Provider</h4>
+                      <img src={booking.provider.image} alt={booking.provider.name} className="provider-photo" />
+                      <p><strong>Name:</strong> {booking.provider.name}</p>
+                      <p><strong>Phone:</strong> {booking.provider.phone}</p>
+                      <p><strong>Email:</strong> {booking.provider.email}</p>
+                    </div>
+                    <ServiceProvider provider={booking.provider} />
+                  </>
                 ) : (
-                  <p><em>No provider assigned</em></p>
-                )}
-
-                {booking.provider ? (
-                  <ServiceProvider provider={booking.provider} />
-                ) : (
-                  <p><em>No provider assigned</em></p>
+                  <p><em>No provider assigned yet.</em></p>
                 )}
 
                 <div className="rate-service">
@@ -138,8 +128,6 @@ const BookingStatus = () => {
                     <p className="thank-you-message">Thank you for your feedback!</p>
                   )}
                 </div>
-
-                <ServiceRatingSnapshot ratingStats={{ 5: 2192, 4: 1103, 3: 525, 2: 150, 1: 75 }} />
               </li>
             ))}
           </ul>
