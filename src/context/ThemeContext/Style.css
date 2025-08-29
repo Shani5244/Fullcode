@@ -1,0 +1,16 @@
+/* Light theme */
+body.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark theme */
+body.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Optional: for Navbar or cards */
+.navbar, .card {
+  transition: all 0.3s ease;
+}

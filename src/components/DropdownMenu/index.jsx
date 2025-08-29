@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket, faUser, faHouse } from '@fortawesome/free-solid-svg-icons';
-import '../..components/DropdownMenu/Style.css';
+import '../../components/DropdownMenu/Style.css';
 
 
 const DropdownMenu = ({ onLogout }) => {

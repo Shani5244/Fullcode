@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const UpdateProfile = () => {
   const [provider, setProvider] = useState(
-    JSON.parse(localStorage.getItem('loggedInProvider')) || {}
+    JSON.parse(localStorage.get('loggedInProvider')) || {}
   );
 
   const handleChange = e => {

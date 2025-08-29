@@ -1,0 +1,17 @@
+.location-info {
+  font-size: 16px;
+  padding: 8px;
+  color: #333;
+  background: #f0f0f0;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.location-info strong {
+  color: #007bff;
+}
+
+.location-info .error {
+  color: red;
+  font-size: 14px;
+}

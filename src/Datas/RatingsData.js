@@ -1,7 +1,7 @@
 // src/data/RatingsData.js
 
 export const getRatings = () => {
-  return JSON.parse(localStorage.getItem('ratings')) || {};
+  return JSON.parse(localStorage.get('ratings')) || {};
 };
 
 export const saveRating = (serviceId, newRating) => {

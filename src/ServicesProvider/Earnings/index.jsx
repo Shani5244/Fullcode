@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { getReportByProvider } from "../../API/EarningsApi";
 
 const Earnings = () => {
-  const provider = JSON.parse(localStorage.getItem('loggedInProvider'));
+  const provider = JSON.parse(localStorage.getItem("loggedInProvider"));
   const [earnings, setEarnings] = useState(0);
 
   useEffect(() => {
-    const all = JSON.parse(localStorage.getItem('bookingHistory')) || [];
-    const total = all
-      .filter(b => b.providerId === provider?.id && b.status === 'Confirmed')
-      .reduce((sum, b) => sum + Number(b.price || 0), 0);
-    setEarnings(total);
-  }, [provider?.id]);
+    const fetchEarnings = async () => {
+      if (provider?._id) {   // usually MongoDB id hota hai "_id"
+        const response = await getReportByProvider(provider._id);
+        if (response?.success) {
+          const total = response.reports[0]?.totalEarnings || 0;
+          setEarnings(total);
+        }
+      }
+    };
+    fetchEarnings();
+  }, [provider?._id]);
 
   return (
     <div>

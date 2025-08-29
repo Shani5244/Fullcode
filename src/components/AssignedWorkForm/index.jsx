@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AssignedWorkForm = ({ providerId }) => {
+const AssignedWorkForm = ({ }) => {
   const [status, setStatus] = useState('');
 
   const handleSubmit = () => {

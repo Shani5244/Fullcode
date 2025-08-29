@@ -1,123 +1,206 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Style.css'; // Ensure correct path to your CSS file
+import React, { useState } from "react";
+// src/ServicesProvider/RegisterForm/index.jsx
+import { ProviderRegister } from '../../API/ProviderRegisterApi'; // ✅ Correct import
+import { Link } from "react-router-dom";
+import "./Style.css";
 
-const ProviderRegister = () => {
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    service: '',
+const Register = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phone: "",
+    gender: "",
+    age: "",
+    city: "",
+    state: "",
+    serviceType: "",
+    experience: "",
+    serviceCharges: "",
   });
 
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
+
+  // 🔹 Full validation for all fields
+  const validate = () => {
+    let newErrors = {};
+
+    if (!formData.fullName.trim())
+      newErrors.fullName = "Full Name is required";
+
+    if (!formData.email)
+      newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Enter a valid email address";
+
+    if (!formData.password)
+      newErrors.password = "Password is required";
+    else if (formData.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+
+    if (!formData.phone)
+      newErrors.phone = "Phone is required";
+    else if (!/^\d{10}$/.test(formData.phone))
+      newErrors.phone = "Enter a valid 10-digit phone number";
+
+    if (!formData.gender)
+      newErrors.gender = "Gender is required";
+
+    if (!formData.age)
+      newErrors.age = "Age is required";
+    else if (formData.age < 18)
+      newErrors.age = "Age must be 18 or above";
+
+    if (!formData.city.trim())
+      newErrors.city = "City is required";
+
+    if (!formData.state.trim())
+      newErrors.state = "State is required";
+
+    if (!formData.serviceType.trim())
+      newErrors.serviceType = "Service Type is required";
+
+    if (!formData.experience)
+      newErrors.experience = "Experience is required";
+    else if (formData.experience < 0)
+      newErrors.experience = "Experience cannot be negative";
+
+    if (!formData.serviceCharges)
+      newErrors.serviceCharges = "Service charges are required";
+    else if (formData.serviceCharges <= 0)
+      newErrors.serviceCharges = "Service charges must be greater than 0";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" }); // remove error on typing
   };
 
-  const validate = () => {
-    const { name, email, phone, password, service } = form;
-
-    if (!name || !email || !phone || !password || !service) {
-      return 'All fields are required';
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return 'Invalid email format';
-    }
-
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(phone)) {
-      return 'Phone must be 10 digits';
-    }
-
-    if (password.length < 6) {
-      return 'Password must be at least 6 characters';
-    }
-
-    return null;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
 
-    const validationError = validate();
-    if (validationError) {
-      return setError(validationError);
+    try {
+      await ProviderRegister(formData);
+      setMessage("🎉 Registration Successful!");
+      setFormData({
+        fullName: "",
+        email: "",
+        password: "",
+        phone: "",
+        gender: "",
+        age: "",
+        city: "",
+        state: "",
+        serviceType: "",
+        experience: "",
+        serviceCharges: "",
+      });
+    } catch (err) {
+      setMessage("❌ Error: " + (err.response?.data?.message || err.message));
     }
-
-    const existing = JSON.parse(localStorage.getItem('serviceProviders')) || [];
-    const duplicate = existing.find((p) => p.email === form.email);
-
-    if (duplicate) {
-      return setError('Email is already registered');
-    }
-
-    existing.push(form);
-    localStorage.setItem('serviceProviders', JSON.stringify(existing));
-
-    // Do NOT auto login
-    // Redirect to login page
-    navigate('/provider-login');
   };
 
   return (
-    <div className="form-container">
-      <h2>Register as Service Provider</h2>
-      {error && <p className="error">{error}</p>}
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Provider Register</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="name"
-          placeholder="Full Name"
-          value={form.name}
-          onChange={handleChange}
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-        />
-        <input
-          name="phone"
-          placeholder="Phone Number"
-          value={form.phone}
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-        />
-        <input
-          name="service"
-          placeholder="Service Type (e.g., Electrician, Plumber)"
-          value={form.service}
-          onChange={handleChange}
-        />
+        {/* Full Name */}
+        <div className="input-group">
+          <label>Full Name</label>
+          <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} />
+          {errors.fullName && <p className="error-text">{errors.fullName}</p>}
+        </div>
 
-        <button type="submit">Register</button>
+        {/* Email */}
+        <div className="input-group">
+          <label>Email</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} />
+          {errors.email && <p className="error-text">{errors.email}</p>}
+        </div>
+
+        {/* Password */}
+        <div className="input-group">
+          <label>Password</label>
+          <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          {errors.password && <p className="error-text">{errors.password}</p>}
+        </div>
+
+        {/* Phone */}
+        <div className="input-group">
+          <label>Phone</label>
+          <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+          {errors.phone && <p className="error-text">{errors.phone}</p>}
+        </div>
+
+        {/* Gender */}
+        <div className="input-group">
+          <label>Gender</label>
+          <select name="gender" value={formData.gender} onChange={handleChange}>
+            <option value="">--Select--</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+          {errors.gender && <p className="error-text">{errors.gender}</p>}
+        </div>
+
+        {/* Age */}
+        <div className="input-group">
+          <label>Age</label>
+          <input type="number" name="age" value={formData.age} onChange={handleChange} />
+          {errors.age && <p className="error-text">{errors.age}</p>}
+        </div>
+
+        {/* City */}
+        <div className="input-group">
+          <label>City</label>
+          <input type="text" name="city" value={formData.city} onChange={handleChange} />
+          {errors.city && <p className="error-text">{errors.city}</p>}
+        </div>
+
+        {/* State */}
+        <div className="input-group">
+          <label>State</label>
+          <input type="text" name="state" value={formData.state} onChange={handleChange} />
+          {errors.state && <p className="error-text">{errors.state}</p>}
+        </div>
+
+        {/* Service Type */}
+        <div className="input-group">
+          <label>Service Type</label>
+          <input type="text" name="serviceType" value={formData.serviceType} onChange={handleChange} />
+          {errors.serviceType && <p className="error-text">{errors.serviceType}</p>}
+        </div>
+
+        {/* Experience */}
+        <div className="input-group">
+          <label>Experience (Years)</label>
+          <input type="number" name="experience" value={formData.experience} onChange={handleChange} />
+          {errors.experience && <p className="error-text">{errors.experience}</p>}
+        </div>
+
+        {/* Service Charges */}
+        <div className="input-group">
+          <label>Service Charges (₹)</label>
+          <input type="number" name="serviceCharges" value={formData.serviceCharges} onChange={handleChange} />
+          {errors.serviceCharges && <p className="error-text">{errors.serviceCharges}</p>}
+        </div>
+
+        <button type="submit" className="btn">Register</button>
+        {message && <p className="message">{message}</p>}
+
+        <p className="switch-link">
+          Already have an account? <Link to="/provider-login">Login here</Link>
+        </p>
       </form>
-
-      <p>
-        Already registered?{' '}
-        <span
-          onClick={() => navigate('/provider-login')}
-          style={{ color: 'blue', cursor: 'pointer' }}
-        >
-          Login here
-        </span>
-      </p>
     </div>
   );
 };
 
-export default ProviderRegister;
+export default Register;
